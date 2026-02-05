@@ -1,0 +1,794 @@
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Sameeksha K | Portfolio</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <!-- Tailwind CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    :root {
+      --bg-gradient: radial-gradient(circle at top left, #4f46e5 0, #1e293b 40%, #020617 100%);
+      --accent: #38bdf8;
+      --accent-soft: rgba(56, 189, 248, 0.2);
+      --card-bg: rgba(15, 23, 42, 0.85);
+      --border-soft: rgba(148, 163, 184, 0.3);
+    }
+
+    body {
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "SF Pro Text", "Inter", sans-serif;
+      background: #020617;
+      color: #e5e7eb;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    .hero-bg {
+      background-image: var(--bg-gradient);
+    }
+
+    .glass {
+      background: var(--card-bg);
+      border: 1px solid var(--border-soft);
+      backdrop-filter: blur(18px);
+    }
+
+    .btn-primary {
+      position: relative;
+      overflow: hidden;
+    }
+
+    .btn-primary::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(120deg, #38bdf8, #a855f7, #f97316);
+      opacity: 0;
+      transition: opacity 0.3s ease;
+    }
+
+    .btn-primary span {
+      position: relative;
+      z-index: 1;
+    }
+
+    .btn-primary:hover::before {
+      opacity: 1;
+    }
+
+    .nav-blur {
+      backdrop-filter: blur(16px);
+      background: linear-gradient(to right, rgba(15,23,42,0.92), rgba(15,23,42,0.7));
+      border-bottom: 1px solid rgba(148,163,184,0.35);
+    }
+
+    .section-anchor::before {
+      content: "";
+      display: block;
+      height: 80px;
+      margin-top: -80px;
+      visibility: hidden;
+    }
+
+    .tag-pill {
+      background: radial-gradient(circle at 0 0, rgba(56,189,248,0.55), rgba(15,23,42,0.8));
+      border: 1px solid rgba(56,189,248,0.3);
+      box-shadow: 0 0 0 1px rgba(15,23,42,1), 0 18px 40px rgba(15,23,42,0.9);
+    }
+
+    .timeline::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0.9rem;
+      width: 2px;
+      height: 100%;
+      background: linear-gradient(to bottom, rgba(56,189,248,0.9), rgba(56,189,248,0.05));
+    }
+
+    .timeline-dot {
+      box-shadow: 0 0 0 4px rgba(56,189,248,0.25);
+    }
+
+    .card-hover {
+      transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease, background 0.3s ease;
+    }
+    .card-hover:hover {
+      transform: translateY(-4px) translateZ(0);
+      box-shadow: 0 22px 60px rgba(15,23,42,0.9);
+      border-color: rgba(56,189,248,0.5);
+      background: rgba(15,23,42,0.96);
+    }
+
+    .gradient-text {
+      background: linear-gradient(120deg, #38bdf8, #a855f7, #f97316);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+    }
+
+    .floating-orb {
+      position: absolute;
+      border-radius: 999px;
+      filter: blur(60px);
+      opacity: 0.6;
+      mix-blend-mode: screen;
+      pointer-events: none;
+    }
+
+    @keyframes float-slow {
+      0% { transform: translate3d(0, 0, 0); }
+      50% { transform: translate3d(10px, -20px, 0); }
+      100% { transform: translate3d(0, 0, 0); }
+    }
+
+    .floating-orb:nth-child(1) {
+      width: 260px;
+      height: 260px;
+      background: #38bdf8;
+      top: -40px;
+      right: -40px;
+      animation: float-slow 13s ease-in-out infinite;
+    }
+
+    .floating-orb:nth-child(2) {
+      width: 220px;
+      height: 220px;
+      background: #a855f7;
+      bottom: -60px;
+      left: -20px;
+      animation: float-slow 16s ease-in-out infinite;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    .scroll-indicator {
+      animation: bounce 1.6s infinite;
+    }
+
+    @keyframes bounce {
+      0%, 100% { transform: translateY(0); opacity: 0.7; }
+      50% { transform: translateY(6px); opacity: 1; }
+    }
+
+    .reveal {
+      opacity: 0;
+      transform: translateY(18px);
+      transition: opacity 0.6s ease, transform 0.6s ease;
+    }
+    .reveal-visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    @media (max-width: 640px) {
+      .hero-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+<body class="min-h-screen text-slate-100">
+  <!-- Top Glow -->
+  <div class="fixed inset-x-0 top-0 z-0 h-64 pointer-events-none" style="background: radial-gradient(circle at top, rgba(56,189,248,0.16), transparent 60%);"></div>
+
+  <!-- Navbar -->
+  <header class="fixed top-0 inset-x-0 z-30 nav-blur">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-between h-16">
+      <div class="flex items-center gap-2">
+        <div class="w-8 h-8 rounded-xl bg-sky-500/15 border border-sky-400/40 flex items-center justify-center">
+          <span class="text-sky-300 font-semibold text-lg">S</span>
+        </div>
+        <span class="font-semibold tracking-tight text-slate-100">Sameeksha K</span>
+      </div>
+      <nav class="hidden md:flex items-center gap-6 text-sm text-slate-300">
+        <a href="#about" class="hover:text-sky-300 transition-colors">About</a>
+        <a href="#skills" class="hover:text-sky-300 transition-colors">Skills</a>
+        <a href="#projects" class="hover:text-sky-300 transition-colors">Projects</a>
+        <a href="#experience" class="hover:text-sky-300 transition-colors">Experience</a>
+        <a href="#achievements" class="hover:text-sky-300 transition-colors">Achievements</a>
+        <a href="#contact" class="hover:text-sky-300 transition-colors">Contact</a>
+      </nav>
+      <a href="#contact" class="hidden sm:inline-flex btn-primary rounded-full border border-sky-400/50 bg-sky-500/10 px-4 py-1.5 text-xs font-medium text-sky-100 shadow-lg shadow-sky-900/60">
+        <span>Let’s Connect</span>
+      </a>
+    </div>
+  </header>
+
+  <!-- Main -->
+  <main class="relative pt-24">
+    <!-- Hero -->
+    <section class="hero-bg relative overflow-hidden">
+      <div class="absolute inset-0 bg-[radial-gradient(circle_at_top,rgba(15,23,42,0)_0,rgba(15,23,42,0.9)_65%,#020617_100%)]"></div>
+      <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-16 sm:py-20 relative z-10">
+        <div class="grid hero-grid md:grid-cols-[minmax(0,1.1fr)_minmax(0,0.9fr)] gap-10 items-center">
+          <!-- Text -->
+          <div class="space-y-7 reveal">
+            <div class="inline-flex items-center gap-2 rounded-full tag-pill px-3 py-1 text-xs text-sky-100">
+              <span class="inline-flex h-1.5 w-1.5 rounded-full bg-emerald-400 animate-pulse"></span>
+              Open to roles in
+              <span class="font-semibold">Web Development</span>
+            </div>
+            <div>
+              <h1 class="text-3xl sm:text-4xl lg:text-5xl font-semibold tracking-tight text-slate-50">
+                Hi, I’m <span class="gradient-text">Sameeksha K</span><br />
+                <h3>Aspiring <span class="gradient-text">Data Analyst and Web Developer</span></h3>
+              </h1>
+              <p class="mt-4 text-sm sm:text-base text-slate-300 max-w-xl">
+                Computer Science and Engineering graduate (Data Science) passionate about 
+                building meaningful digital experiences and applying machine 
+                learning to real-world challenges such as precision agriculture.
+              </p>
+            </div>
+            <div class="flex flex-wrap items-center gap-4">
+              <a href="#projects" class="btn-primary inline-flex items-center gap-2 rounded-full bg-sky-500/90 border border-sky-300/70 px-5 py-2.5 text-sm font-semibold text-slate-950 shadow-lg shadow-sky-900/60 hover:shadow-sky-900/80 transition">
+                <span>View Projects</span>
+                <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M5 12h14M13 6l6 6-6 6" />
+                </svg>
+              </a>
+              <a href="#contact" class="inline-flex items-center gap-2 rounded-full border border-slate-500/60 bg-slate-900/40 px-4 py-2 text-xs sm:text-sm text-slate-200 hover:border-sky-400 hover:bg-slate-900/80 transition">
+                <span>Download CV (on request)</span>
+              </a>
+            </div>
+            <div class="flex flex-wrap items-center gap-4">
+              <div class="flex -space-x-1.5 text-[10px]">
+                <span class="px-2 py-1 rounded-full bg-slate-900/70 border border-slate-700/70 text-slate-200">HTML/CSS</span>
+                <span class="px-2 py-1 rounded-full bg-slate-900/70 border border-slate-700/70 text-slate-200">Python</span>
+                <span class="px-2 py-1 rounded-full bg-slate-900/70 border border-slate-700/70 text-slate-200">MySQL</span>
+                <span class="px-2 py-1 rounded-full bg-slate-900/70 border border-slate-700/70 text-slate-200">Machine Learning</span>
+              </div>
+              <div class="flex items-center gap-2 text-[11px] text-slate-400">
+                <span class="h-px w-6 bg-slate-600/70"></span>
+                Based in Puttur, Karnataka
+              </div>
+            </div>
+            <div class="flex items-center gap-3 text-xs text-slate-400">
+              <span class="scroll-indicator inline-flex h-8 w-5 items-center justify-center rounded-full border border-slate-500/60">
+                <span class="h-2 w-[2px] rounded-full bg-slate-300"></span>
+              </span>
+              <span>Scroll to explore my journey</span>
+            </div>
+          </div>
+
+          <!-- Card / Summary -->
+          <div class="relative reveal">
+            <div class="floating-orb"></div>
+            <div class="floating-orb"></div>
+            <div class="glass rounded-3xl p-6 sm:p-7 border border-slate-700/70 shadow-[0_20px_60px_rgba(15,23,42,0.9)] relative overflow-hidden">
+              <div class="absolute inset-x-6 top-0 h-px bg-gradient-to-r from-transparent via-sky-400/60 to-transparent opacity-60"></div>
+              <div class="flex items-center justify-between gap-4 mb-4">
+                <div>
+                  <p class="text-xs uppercase tracking-[0.18em] text-sky-300/80 mb-1">Professional Summary</p>
+                  <p class="text-[11px] text-slate-400">B.E. in CSE (Data Science) · CGPA: 8.36</p>
+                </div>
+                <span class="inline-flex items-center rounded-full bg-emerald-400/10 border border-emerald-400/50 px-2 py-1 text-[10px] text-emerald-300">
+                  <span class="h-1.5 w-1.5 rounded-full bg-emerald-400 mr-1.5 animate-pulse"></span>
+                  Actively seeking opportunities
+                </span>
+              </div>
+              <p class="text-xs sm:text-sm text-slate-200 leading-relaxed">
+                Seeking a role where I can apply teamwork, communication, problem-solving, and decision-making skills
+                along with technical knowledge in HTML/CSS, Python, MySQL, React.js and MUI. I aim to contribute to
+                organizational growth while continuously enhancing my expertise.
+              </p>
+              <div class="mt-5 grid grid-cols-2 gap-3 text-[11px] text-slate-300">
+                <div class="rounded-2xl bg-slate-900/60 border border-slate-700/80 p-3">
+                  <p class="text-[10px] uppercase tracking-[0.16em] text-slate-400 mb-1">Education</p>
+                  <p class="font-medium text-slate-100">Vivekananda College of Engineering and Technology, Puttur</p>
+                  <p class="mt-1 text-[11px] text-slate-400">B.E. in CSE (Data Science), 2021–2025</p>
+                </div>
+                <div class="rounded-2xl bg-slate-900/60 border border-slate-700/80 p-3">
+                  <p class="text-[10px] uppercase tracking-[0.16em] text-slate-400 mb-1">Location & Contact</p>
+                  <p class="text-slate-100">Puttur, Karnataka</p>
+                  <p class="mt-1 text-[11px] text-slate-400">📞 +91 88613 17277<br />✉️ sameekshak59@gmail.com</p>
+                </div>
+              </div>
+              <div class="mt-4 flex flex-wrap gap-2 text-[10px]">
+                <span class="px-2 py-1 rounded-full bg-sky-500/10 border border-sky-400/60 text-sky-100">Data Science</span>
+                <span class="px-2 py-1 rounded-full bg-violet-500/10 border border-violet-400/60 text-violet-100">Web Development</span>
+                <span class="px-2 py-1 rounded-full bg-emerald-500/10 border border-emerald-400/60 text-emerald-100">Material UI</span>
+                <span class="px-2 py-1 rounded-full bg-emerald-500/10 border border-emerald-400/60 text-slate-100">React.js</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- About & Education -->
+    <section id="about" class="section-anchor relative bg-slate-950">
+      <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-12 sm:py-16">
+        <div class="grid md:grid-cols-[minmax(0,1.2fr)_minmax(0,1fr)] gap-10 items-start">
+          <!-- About -->
+          <div class="space-y-5 reveal">
+            <h2 class="text-xl sm:text-2xl font-semibold tracking-tight text-slate-50 mb-1">About &nbsp;<span class="gradient-text">Me</span></h2>
+            <p class="text-sm text-slate-300 leading-relaxed">
+              I am a Computer Science and Engineering graduate specializing in Data Science, 
+              with strong analytical abilities and a passion for solving real-world problems through technology. 
+              My interests include web development and mobile application development. 
+              I enjoy working in collaborative environments, continuously learning new tools, 
+              and transforming ideas into efficient, user-friendly solutions.
+            </p>
+            <p class="text-sm text-slate-300 leading-relaxed">
+              Beyond academics, I am skilled in communication, presentation, and professional etiquette, and I
+              enjoy expressing creativity through Rangoli art and reading books and stories.
+            </p>
+            <div class="flex flex-wrap gap-3 text-[11px]">
+              <span class="px-3 py-1 rounded-full border border-slate-600/70 bg-slate-900/60 text-slate-200">Team Player</span>
+              <span class="px-3 py-1 rounded-full border border-slate-600/70 bg-slate-900/60 text-slate-200">Quick Learner</span>
+              <span class="px-3 py-1 rounded-full border border-slate-600/70 bg-slate-900/60 text-slate-200">Detail-Oriented</span>
+              <span class="px-3 py-1 rounded-full border border-slate-600/70 bg-slate-900/60 text-slate-200">Problem Solver</span>
+            </div>
+          </div>
+
+          <!-- Education cards -->
+          <div class="space-y-4 reveal">
+            <h3 class="text-sm font-medium text-slate-300 uppercase tracking-[0.18em]">Education</h3>
+            <div class="glass rounded-2xl p-4 border border-slate-700/80 card-hover">
+              <p class="text-xs text-sky-300 mb-1">2021 – 2025</p>
+              <p class="font-semibold text-slate-50 text-sm">B.E. in Computer Science & Engineering (Data Science)</p>
+              <p class="text-xs text-slate-300 mt-1">Vivekananda College of Engineering and Technology, Puttur</p>
+              <p class="text-xs text-emerald-300 mt-1">CGPA: 8.36</p>
+            </div>
+            <div class="glass rounded-2xl p-4 border border-slate-700/80 card-hover">
+              <p class="text-xs text-sky-300 mb-1">2020 – 2021</p>
+              <p class="font-semibold text-slate-50 text-sm">PUC</p>
+              <p class="text-xs text-slate-300 mt-1">Government PU College Kombettu, Puttur</p>
+              <p class="text-xs text-emerald-300 mt-1">Percentage: 77.5%</p>
+            </div>
+            <div class="glass rounded-2xl p-4 border border-slate-700/80 card-hover">
+              <p class="text-xs text-sky-300 mb-1">2018 – 2019</p>
+              <p class="font-semibold text-slate-50 text-sm">SSLC</p>
+              <p class="text-xs text-slate-300 mt-1">Morarji Desai Residential School Balnadu, Puttur</p>
+              <p class="text-xs text-emerald-300 mt-1">Percentage: 77.48%</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Skills -->
+    <section id="skills" class="section-anchor relative bg-slate-950/95 border-t border-slate-800/80">
+      <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-12 sm:py-16">
+        <div class="flex flex-col sm:flex-row sm:items-end sm:justify-between gap-4 mb-8 reveal">
+          <div>
+            <h2 class="text-xl sm:text-2xl font-semibold tracking-tight text-slate-50">Skills &nbsp;<span class="gradient-text">Stack</span></h2>
+            <p class="text-sm text-slate-400 mt-1 max-w-lg">
+              A combination of technical and soft skills that help me build practical, reliable, and user-focused solutions.
+            </p>
+          </div>
+        </div>
+
+        <div class="grid lg:grid-cols-[minmax(0,1.1fr)_minmax(0,0.9fr)] gap-8">
+
+  <!-- LEFT SIDE -->
+  <div class="space-y-5 reveal">
+
+    <!-- ========== TECHNICAL SKILLS ========== -->
+    <div class="glass rounded-3xl p-5 border border-slate-700/80 card-hover">
+      <p class="text-xs uppercase tracking-[0.18em] text-slate-400 mb-4">Technical Skills</p>
+
+      <div class="grid md:grid-cols-2 gap-4">
+
+        <div class="bg-slate-800/60 rounded-2xl p-4 border border-slate-700">
+          <p class="text-[11px] text-slate-400 mb-2">Frontend Development</p>
+          <ul class="space-y-1 text-slate-100 text-sm list-disc list-inside">
+            <li>HTML5</li>
+            <li>CSS3</li>
+            <li>JavaScript</li>
+            <li>React.js</li>
+            <li>MUI (Material UI)</li>
+          </ul>
+        </div>
+
+        <div class="bg-slate-800/60 rounded-2xl p-4 border border-slate-700">
+          <p class="text-[11px] text-slate-400 mb-2">Programming & Data</p>
+          <ul class="space-y-1 text-slate-100 text-sm list-disc list-inside">
+            <li>Python</li>
+            <li>MySQL</li>
+            <li>Machine Learning</li>
+            <li>CNN Image Classification</li>
+          </ul>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- ========== SOFT SKILLS & LANGUAGES ========== -->
+    <div class="glass rounded-3xl p-5 border border-slate-700/80 card-hover">
+      <p class="text-xs uppercase tracking-[0.18em] text-slate-400 mb-4">Soft Skills & Languages</p>
+
+      <div class="grid md:grid-cols-2 gap-4">
+
+        <div class="bg-slate-800/60 rounded-2xl p-4 border border-slate-700">
+          <p class="text-[11px] text-slate-400 mb-2">Soft Skills</p>
+          <ul class="space-y-1 text-slate-100 text-sm list-disc list-inside">
+            <li>Teamwork & Collaboration</li>
+            <li>Effective Communication</li>
+            <li>Problem Solving</li>
+            <li>Analytical Thinking</li>
+            <li>Attention to Detail</li>
+          </ul>
+        </div>
+
+        <div class="bg-slate-800/60 rounded-2xl p-4 border border-slate-700">
+          <p class="text-[11px] text-slate-400 mb-2">Languages & Tools</p>
+          <ul class="space-y-1 text-slate-100 text-sm list-disc list-inside">
+            <li>Microsoft Office</li>
+            <li>Flutter & Dart (Foundations)</li>
+            <li>English</li>
+            <li>Hindi</li>
+            <li>Kannada</li>
+            <li>Tulu</li>
+          </ul>
+        </div>
+
+      </div>
+    </div>
+
+  </div>
+  </div>
+  <!-- RIGHT SIDE (Your training section remains same) -->
+</div>
+
+      </div>
+    </section>
+
+    <!-- Projects -->
+    <section id="projects" class="section-anchor relative bg-slate-950">
+      <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-12 sm:py-16">
+        <div class="flex flex-col sm:flex-row sm:items-end sm:justify-between gap-4 mb-8 reveal">
+          <div>
+            <h2 class="text-xl sm:text-2xl font-semibold tracking-tight text-slate-50">Featured &nbsp;<span class="gradient-text">Projects</span></h2>
+            <p class="text-sm text-slate-400 mt-1 max-w-lg">
+              A selection of academic and internship projects that reflect my interests in machine learning,
+              data management, and mobile app development.
+            </p>
+          </div>
+          <span class="text-[11px] text-slate-400">2023 – 2025</span>
+        </div>
+
+        <div class="grid md:grid-cols-3 gap-6 lg:gap-8">
+          <!-- Project 1 -->
+          <article class="glass rounded-3xl p-5 border border-slate-700/80 card-hover reveal flex flex-col">
+            <div class="mb-3 flex items-center justify-between">
+              <span class="px-2 py-1 rounded-full bg-emerald-500/10 border border-emerald-400/60 text-[11px] text-emerald-200">Machine Learning</span>
+              <span class="text-[11px] text-slate-400">2023 – 2025</span>
+            </div>
+            <h3 class="text-sm sm:text-base font-semibold text-slate-50">Leaf Disease Detection (Lemon Leaves)</h3>
+            <p class="mt-2 text-xs sm:text-sm text-slate-300 flex-1">
+              Developed a CNN‑based machine learning model to detect diseases in lemon leaves, helping farmers
+              identify issues early and support precision agriculture practices.
+            </p>
+            <ul class="mt-3 space-y-1.5 text-xs text-slate-300 list-disc list-inside">
+              <li>Image preprocessing and dataset preparation</li>
+              <li>Model training, evaluation, and accuracy improvement</li>
+              <li>Focus on practical use in agricultural decision-making</li>
+            </ul>
+            <div class="mt-3 flex flex-wrap gap-2 text-[11px]">
+              <span class="px-2 py-1 rounded-full bg-slate-900/70 border border-slate-700/70 text-slate-200">Python</span>
+              <span class="px-2 py-1 rounded-full bg-slate-900/70 border border-slate-700/70 text-slate-200">CNN</span>
+              <span class="px-2 py-1 rounded-full bg-slate-900/70 border border-slate-700/70 text-slate-200">Image Processing</span>
+            </div>
+          </article>
+
+          <!-- Project 2 -->
+          <article class="glass rounded-3xl p-5 border border-slate-700/80 card-hover reveal flex flex-col">
+            <div class="mb-3 flex items-center justify-between">
+              <span class="px-2 py-1 rounded-full bg-sky-500/10 border border-sky-400/60 text-[11px] text-sky-200">Database System</span>
+              <span class="text-[11px] text-slate-400">2023 – 2024</span>
+            </div>
+            <h3 class="text-sm sm:text-base font-semibold text-slate-50">Agriculture Management System</h3>
+            <p class="mt-2 text-xs sm:text-sm text-slate-300 flex-1">
+              Designed and implemented a database management system to streamline farmer product details, user
+              information, and transaction processes.
+            </p>
+            <ul class="mt-3 space-y-1.5 text-xs text-slate-300 list-disc list-inside">
+              <li>Structured data for efficient retrieval and updates</li>
+              <li>Improved reliability of agricultural data handling</li>
+              <li>Focused on usability for different types of users</li>
+            </ul>
+            <div class="mt-3 flex flex-wrap gap-2 text-[11px]">
+              <span class="px-2 py-1 rounded-full bg-slate-900/70 border border-slate-700/70 text-slate-200">MySQL</span>
+              <span class="px-2 py-1 rounded-full bg-slate-900/70 border border-slate-700/70 text-slate-200">DBMS</span>
+              <span class="px-2 py-1 rounded-full bg-slate-900/70 border border-slate-700/70 text-slate-200">Data Modeling</span>
+            </div>
+          </article>
+
+          <!-- Project 3 -->
+          <article class="glass rounded-3xl p-5 border border-slate-700/80 card-hover reveal flex flex-col">
+            <div class="mb-3 flex items-center justify-between">
+              <span class="px-2 py-1 rounded-full bg-violet-500/10 border border-violet-400/60 text-[11px] text-violet-200">Mobile App</span>
+              <span class="text-[11px] text-slate-400">2023 – 2024</span>
+            </div>
+            <h3 class="text-sm sm:text-base font-semibold text-slate-50">B.E. Helpers (Flutter & Dart)</h3>
+            <p class="mt-2 text-xs sm:text-sm text-slate-300 flex-1">
+              Developed a mobile application to simplify access to study materials and essential tools for B.E. students,
+              improving learning accessibility and organization.
+            </p>
+            <ul class="mt-3 space-y-1.5 text-xs text-slate-300 list-disc list-inside">
+              <li>Organized academic resources in one place</li>
+              <li>Designed simple and clear user flows</li>
+              <li>Collaborated with peers for feature ideas</li>
+            </ul>
+            <div class="mt-3 flex flex-wrap gap-2 text-[11px]">
+              <span class="px-2 py-1 rounded-full bg-slate-900/70 border border-slate-700/70 text-slate-200">Flutter</span>
+              <span class="px-2 py-1 rounded-full bg-slate-900/70 border border-slate-700/70 text-slate-200">Dart</span>
+              <span class="px-2 py-1 rounded-full bg-slate-900/70 border border-slate-700/70 text-slate-200">UI Design</span>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- Experience / Timeline -->
+    <section id="experience" class="section-anchor relative bg-slate-950/95 border-t border-slate-800/80">
+      <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-12 sm:py-16">
+        
+        <div class="flex flex-col sm:flex-row sm:items-end sm:justify-between gap-4 mb-8 reveal">
+          <div>
+            <h2 class="text-xl sm:text-2xl font-semibold tracking-tight text-slate-50">Experience &nbsp;<span class="gradient-text">Timeline</span></h2>
+            <p class="text-sm text-slate-400 mt-1 max-w-lg">
+              A quick view of my growth through internships, training, and academic milestones.
+            </p>
+          </div>
+        </div>
+
+        <div class="relative pl-6 sm:pl-8 timeline reveal">
+          <div class="space-y-6">
+            <div class="relative pl-6">
+              <div class="absolute left-0 top-1 w-3 h-3 rounded-full bg-sky-400 timeline-dot"></div>
+              <p class="text-[11px] text-slate-400">Present-Intership</p>
+              <p class="text-sm font-semibold text-slate-50">Digital Marketing and Web Development | SN Infosystem</p>
+              <p class="text-xs text-slate-300 mt-1">
+                Currently contributing to website development, SEO optimization, 
+                and digital marketing campaigns while gaining hands-on experience in 
+                building user-focused digital solutions.
+              </p>
+            </div>
+            <div class="relative pl-6">
+              <div class="absolute left-0 top-1 w-3 h-3 rounded-full bg-sky-400 timeline-dot"></div>
+              <p class="text-[11px] text-slate-400">May 2025</p>
+              <p class="text-sm font-semibold text-slate-50">Paper/Poster Presentation – JnanaSangama</p>
+              <p class="text-xs text-slate-300 mt-1">
+                Presented “Lemon Leaf Disease Detection Using Machine Learning” at a national‑level student conference,
+                demonstrating my work in ML and agriculture.
+              </p>
+            </div>
+
+            <div class="relative pl-6">
+              <div class="absolute left-0 top-1 w-3 h-3 rounded-full bg-emerald-400 timeline-dot"></div>
+              <p class="text-[11px] text-slate-400">Feb 2025 – Apr 2025</p>
+              <p class="text-sm font-semibold text-slate-50">Skill Competency Internship – Rooman Technologies</p>
+              <p class="text-xs text-slate-300 mt-1">
+                Improved hands-on capabilities with technical tools and real-world style tasks, building confidence
+                in applying classroom concepts to practice.
+              </p>
+            </div>
+
+            <div class="relative pl-6">
+              <div class="absolute left-0 top-1 w-3 h-3 rounded-full bg-violet-400 timeline-dot"></div>
+              <p class="text-[11px] text-slate-400">Jun 2024</p>
+              <p class="text-sm font-semibold text-slate-50">Intra‑College Technical Fest – UNBOUNDED</p>
+              <p class="text-xs text-slate-300 mt-1">
+                Participated in technical events organized by the Core Association Team at VCET, collaborating with peers
+                and exploring innovative problem statements.
+              </p>
+            </div>
+
+            <div class="relative pl-6">
+              <div class="absolute left-0 top-1 w-3 h-3 rounded-full bg-amber-400 timeline-dot"></div>
+              <p class="text-[11px] text-slate-400">Nov 2023 & Oct 2022</p>
+              <p class="text-sm font-semibold text-slate-50">Flutter & Dart Internship · Soft Skills Training</p>
+              <p class="text-xs text-slate-300 mt-1">
+                Built a foundation in mobile app development and strengthened communication and professional skills through
+                focused training at QSpiders.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Achievements -->
+    <section id="achievements" class="section-anchor relative bg-slate-950">
+      <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-12 sm:py-16">
+        <div class="flex flex-col sm:flex-row sm:items-end sm:justify-between gap-4 mb-8 reveal">
+          <div>
+            <h2 class="text-xl sm:text-2xl font-semibold tracking-tight text-slate-50">Key &nbsp;<span class="gradient-text">Achievements</span></h2>
+            <p class="text-sm text-slate-400 mt-1 max-w-lg">
+              Moments that highlight my initiative, presentation skills, and enthusiasm for technology.
+            </p>
+          </div>
+        </div>
+
+        <div class="grid md:grid-cols-2 gap-6 reveal">
+          <div class="glass rounded-3xl p-5 border border-slate-700/80 card-hover">
+            <p class="text-xs text-sky-300 mb-1">National-level Conference · May 2025</p>
+            <h3 class="text-sm font-semibold text-slate-50">Paper/Poster Presentation – JnanaSangama</h3>
+            <p class="mt-2 text-xs sm:text-sm text-slate-300">
+              Presented research work on “Lemon Leaf Disease Detection Using Machine Learning,”
+              showcasing technical understanding, communication skills, and the social impact of ML in agriculture.
+            </p>
+          </div>
+
+          <div class="glass rounded-3xl p-5 border border-slate-700/80 card-hover">
+            <p class="text-xs text-sky-300 mb-1">Technical Fest · Jun 2024</p>
+            <h3 class="text-sm font-semibold text-slate-50">Intra‑College Technical Fest – UNBOUNDED</h3>
+            <p class="mt-2 text-xs sm:text-sm text-slate-300">
+              Participated in multiple events organized by the Core Association Team at VCET, Puttur,
+              gaining exposure to competitive problem-solving and collaborative thinking.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Contact -->
+    <section id="contact" class="section-anchor relative bg-slate-950/95 border-t border-slate-800/80">
+      <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-12 sm:py-16">
+        <div class="grid lg:grid-cols-[minmax(0,1.1fr)_minmax(0,0.9fr)] gap-10 items-start">
+          <div class="space-y-4 reveal">
+            <h2 class="text-xl sm:text-2xl font-semibold tracking-tight text-slate-50">Let’s &nbsp;<span class="gradient-text">Connect</span></h2>
+            <p class="text-sm text-slate-400 max-w-lg">
+              I’m open to internships, full-time roles, and collaborative projects in web development, data science,
+              and machine learning. Feel free to reach out via email or phone.
+            </p>
+            <div class="space-y-3 text-sm">
+              <div class="flex items-start gap-3">
+                <span class="mt-0.5 text-sky-300">📍Permanent Address</span>
+                <p class="text-slate-200">
+                  Kaje Devinagara House, Bannuru Post & Village,<br />Puttur – 574203, Karnataka, India
+                </p>
+              </div>
+              <div class="flex items-start gap-3">
+                <span class="mt-0.5 text-sky-300">📍Current Location</span>
+                <p class="text-slate-200">
+                  SVS Ladies Pg, Behind Nandi Toyato Showroom, <br/>Kudlugate, Bangalore
+                </p>
+              </div>
+              <div class="flex items-center gap-3">
+                <span class="text-sky-300">📞</span>
+                <a href="tel:+918861317277" class="text-slate-200 hover:text-sky-300 transition">
+                  +91 88613 17277
+                </a>
+              </div>
+              <div class="grid sm:grid-cols-3 gap-4 mb-6 reveal">
+
+  <!-- LinkedIn -->
+                <a href="https://linkedin.com/in/sameekshak" target="_blank"
+                    class="glass rounded-2xl p-4 border border-slate-700/80 card-hover flex items-center gap-3">
+                    <div class="w-10 h-10 rounded-xl bg-sky-500/10 border border-sky-400/40 flex items-center justify-center text-sky-300">
+                    🔗
+                    </div>
+                    <div>
+                    <p class="text-xs text-slate-400">LinkedIn</p>
+                    <p class="text-sm text-slate-100 font-medium">Professional Profile</p>
+                    </div>
+                </a>
+
+                <!-- GitHub -->
+                <a href="https://github.com/YOUR-USERNAME" target="_blank"
+                    class="glass rounded-2xl p-4 border border-slate-700/80 card-hover flex items-center gap-3">
+                    <div class="w-10 h-10 rounded-xl bg-violet-500/10 border border-violet-400/40 flex items-center justify-center text-violet-300">
+                    💻
+                    </div>
+                    <div>
+                    <p class="text-xs text-slate-400">GitHub</p>
+                    <p class="text-sm text-slate-100 font-medium">Code Projects</p>
+                    </div>
+                </a>
+
+                <!-- Email -->
+                <a href="mailto:sameekshak59@gmail.com" target="_blank"
+                    class="glass rounded-2xl p-4 border-2 border-slate-800/80 card-hover flex items-center gap-3">
+                    <div class="w-10 h-10 rounded-xl bg-emerald-500/10 border border-emerald-400/40 flex items-center justify-center text-emerald-300">
+                    ✉️
+                    </div>
+                    <div>
+                    <p class="text-xs text-slate-400">Email</p>
+                    <p class="text-sm text-slate-100 font-medium">sameekshak59@gmail.com</p>
+                    </div>
+                </a>
+
+                </div>
+            </div>
+            <div class="text-[11px] text-slate-400">
+              Prefer a resume? I can share a detailed CV including coursework, certifications, and project documentation.
+            </div>
+          </div><br>
+
+          <!-- Contact form -->
+          <div class="reveal">
+            <form class="glass rounded-3xl p-6 sm:p-7 border border-slate-700/80 space-y-4 text-sm" onsubmit="handleSubmit(event)">
+              <div>
+                <p class="text-xs uppercase tracking-[0.18em] text-slate-400 mb-1">Quick Message</p>
+                <p class="text-xs text-slate-400">
+                  This demo form does not send emails automatically, but you can copy your message and email it to me directly.
+                </p>
+              </div>
+              <div class="grid sm:grid-cols-2 gap-3">
+                <div>
+                  <label class="block text-xs text-slate-300 mb-1.5">Name</label>
+                  <input type="text" required class="w-full rounded-xl bg-slate-900/80 border border-slate-700 px-3 py-2 text-xs text-slate-100 focus:outline-none focus:ring-1 focus:ring-sky-400 focus:border-sky-400" />
+                </div>
+                <div>
+                  <label class="block text-xs text-slate-300 mb-1.5">Email</label>
+                  <input type="email" required class="w-full rounded-xl bg-slate-900/80 border border-slate-700 px-3 py-2 text-xs text-slate-100 focus:outline-none focus:ring-1 focus:ring-sky-400 focus:border-sky-400" />
+                </div>
+              </div>
+              <div>
+                <label class="block text-xs text-slate-300 mb-1.5">Subject</label>
+                <input type="text" class="w-full rounded-xl bg-slate-900/80 border border-slate-700 px-3 py-2 text-xs text-slate-100 focus:outline-none focus:ring-1 focus:ring-sky-400 focus:border-sky-400" placeholder="Opportunity, collaboration, feedback..." />
+              </div>
+              <div>
+                <label class="block text-xs text-slate-300 mb-1.5">Message</label>
+                <textarea rows="4" class="w-full rounded-xl bg-slate-900/80 border border-slate-700 px-3 py-2 text-xs text-slate-100 focus:outline-none focus:ring-1 focus:ring-sky-400 focus:border-sky-400" placeholder="Write your message here..."></textarea>
+              </div>
+              <button type="submit" class="btn-primary w-full inline-flex items-center justify-center gap-2 rounded-full bg-sky-500/90 border border-sky-300/70 px-4 py-2.5 text-sm font-semibold text-slate-950 shadow-lg shadow-sky-900/60 hover:shadow-sky-900/80 transition">
+                <span>Copy Message to Clipboard</span>
+              </button>
+              <p id="form-status" class="text-[11px] text-emerald-300 hidden mt-1">Message copied! Please paste it into your email client.</p>
+            </form>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- Footer -->
+  <footer class="border-t border-slate-800 bg-slate-950/95">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-5 flex flex-col sm:flex-row items-center justify-between gap-3 text-[11px] text-slate-500">
+      <p>© <span id="year"></span> Sameeksha K. All rights reserved.</p>
+      <p>Designed & developed as a modern portfolio interface.</p>
+    </div>
+  </footer>
+
+  <script>
+    // Update year
+    document.getElementById('year').textContent = new Date().getFullYear();
+
+    // Intersection Observer for reveal animations
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('reveal-visible');
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.15 });
+
+    document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+    // Contact form copy behavior
+    function handleSubmit(e) {
+      e.preventDefault();
+      const form = e.target;
+      const [nameInput, emailInput] = form.querySelectorAll('input');
+      const subjectInput = form.querySelectorAll('input')[2];
+      const messageInput = form.querySelector('textarea');
+
+      const message = `
+Name: ${nameInput.value}
+Email: ${emailInput.value}
+Subject: ${subjectInput.value || '(No subject)'}
+
+Message:
+${messageInput.value || '(No message provided)'}
+      `.trim();
+
+      navigator.clipboard.writeText(message).then(() => {
+        const status = document.getElementById('form-status');
+        status.classList.remove('hidden');
+        setTimeout(() => status.classList.add('hidden'), 3500);
+      }).catch(() => {
+        alert('Unable to copy automatically. Please select and copy the text manually.');
+      });
+    }
+  </script>
+</body>
+</html>
